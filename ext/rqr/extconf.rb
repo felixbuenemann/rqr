@@ -15,8 +15,12 @@ $libs = append_library($libs, "supc++")
 
 if File.exists?('/sw')
   DARWIN_PORT_DIR = '/sw'
-else
+elseif File.exists?('/opt/local')
   DARWIN_PORT_DIR = '/opt/local'
+elsif File.exists?('/usr/local')
+  DARWIN_PORT_DIR = '/usr/local'
+elif RUBY_PLATFORM =~ /darwin/
+  raise "Could not find /sw, /opt/local, or /usr/local. Do you have native library dependencies installed?"
 end
 
 if RUBY_PLATFORM =~ /darwin/
