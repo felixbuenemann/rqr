@@ -19,11 +19,10 @@ elsif File.exists?('/usr/local')
 elsif File.exists?('/opt/local')
   DARWIN_PORT_DIR = '/opt/local'
 elsif RUBY_PLATFORM =~ /darwin/
-  raise "Could not find /sw, /opt/local, or /usr/local. Do you have native library dependencies installed?"
+  raise "Could not find /sw, /usr/local, or /usr/local. Do you have native library dependencies installed?"
 end
 
 if RUBY_PLATFORM =~ /darwin/
-  dir_config "/Developer/SDKs/MacOSX10.6.sdk/usr/lib"
   dir_config('jpeg', DARWIN_PORT_DIR)
   dir_config('png', DARWIN_PORT_DIR)
   dir_config('tiff', DARWIN_PORT_DIR)
