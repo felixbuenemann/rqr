@@ -12,20 +12,15 @@
 require 'mkmf'
 require 'rbconfig'
 
-if File.exists?('/sw')
-  DARWIN_PORT_DIR = '/sw'
-elsif File.exists?('/usr/local')
-  DARWIN_PORT_DIR = '/usr/local'
-elsif File.exists?('/opt/local')
-  DARWIN_PORT_DIR = '/opt/local'
-elsif RUBY_PLATFORM =~ /darwin/
-  raise "Could not find /sw, /usr/local, or /usr/local. Do you have native library dependencies installed?"
-end
 
 if RUBY_PLATFORM =~ /darwin/
-  dir_config('jpeg', DARWIN_PORT_DIR)
-  dir_config('png', DARWIN_PORT_DIR)
-  dir_config('tiff', DARWIN_PORT_DIR)
+  search_dirs = ["/sw", "/usr/local", "/opt/local"]
+  config_dirs = search_dirs.dup.delete_if { |path| !File.directory?(path) }
+  raise "Could not find any of #{search_dirs.join(", ")}. Do you have native library dependencies installed?" if config_dirs.empty?
+
+  dir_config('jpeg', config_dirs)
+  dir_config('png', config_dirs)
+  dir_config('tiff', config_dirs)
 else
   $libs = append_library($libs, "supc++")
   dir_config('jpeg')
