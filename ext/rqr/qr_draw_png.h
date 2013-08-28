@@ -6,7 +6,7 @@
 #include "qr_draw.h"
 
 #ifdef USE_PNG
-  #include "zlib.h"
+	#include <zlib.h>
 	#include <png.h>
 #endif
 
@@ -20,9 +20,9 @@ class QRDrawPNG : public QRDraw
 		int write();
 	
 	public:
-		QRDrawPNG();
-		~QRDrawPNG();
-		int draw(char *filename, int modulesize, int symbolsize,
+		QRDrawPNG(){}
+		~QRDrawPNG(){}
+		int draw(const char *filename, int modulesize, int symbolsize,
                       unsigned char data[MAX_MODULESIZE][MAX_MODULESIZE], void *opt);
 };
 

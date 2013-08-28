@@ -1,16 +1,9 @@
 #include "qr_draw_ps.h"
 
-//=================================================================================
-// QRDrawPS::QRDrawPS
-//=================================================================================
-QRDrawPS::QRDrawPS()
-{
-}
-
 //=============================================================================
 // QRDrawPS::draw
 //=============================================================================
-int QRDrawPS::draw(char *filename, int modulesize, int symbolsize, 
+int QRDrawPS::draw(const char *filename, int modulesize, int symbolsize, 
 					unsigned char data[MAX_MODULESIZE][MAX_MODULESIZE], void *opt)
 {
 	if(!filename) return(1);
@@ -169,7 +162,7 @@ int QRDrawPS::write_preview(FILE *stream, unsigned char data[MAX_MODULESIZE][MAX
 //=============================================================================
 // QRDrawPS::write_eps
 //=============================================================================
-int QRDrawPS::write(unsigned char data[MAX_MODULESIZE][MAX_MODULESIZE], char *mode)
+int QRDrawPS::write(unsigned char data[MAX_MODULESIZE][MAX_MODULESIZE], const char *mode)
 {
 	FILE *stream;
 	int i, j;
@@ -179,7 +172,7 @@ int QRDrawPS::write(unsigned char data[MAX_MODULESIZE][MAX_MODULESIZE], char *mo
 	if((stream=fopen(this->filename, mode)) == NULL) return(1);
 
 	fprintf(stream, "%%!PS-Adobe-3.0 EPSF-3.0\n");
-	fprintf(stream, "%%%%Creator: kei-soe\n");
+	fprintf(stream, "%%%%Creator: sqr\n");
 	fprintf(stream, "%%%%Title: %s\n", this->filename);
 	
 	time(&mytime);

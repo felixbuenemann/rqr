@@ -1,36 +1,9 @@
 #include "qr_draw_jpeg.h"
 
-//=================================================================================
-// QRDrawJPEG::QRDrawJPEG
-//=================================================================================
-QRDrawJPEG::QRDrawJPEG()
-{
-#ifdef USE_JPG
-	bit_image  = NULL;
-#endif
-}
-
-//=================================================================================
-// QRDrawJPEG::~QRDrawJPEG
-//=================================================================================
-QRDrawJPEG::~QRDrawJPEG()
-{
-#ifdef USE_JPG
-	int i;
-	
-	if(bit_image){
-		for(i=0; i<this->rsize; i++){
-			free(bit_image[i]);
-		}
-		free(bit_image);
-	}
-#endif
-}
-
 //=============================================================================
 // QRDrawJPEG::draw
 //=============================================================================
-int QRDrawJPEG::draw(char *filename, int modulesize, int symbolsize,
+int QRDrawJPEG::draw(const char *filename, int modulesize, int symbolsize,
 						unsigned char data[MAX_MODULESIZE][MAX_MODULESIZE], void *opt)
 {
 #ifdef USE_JPG

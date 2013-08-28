@@ -12,7 +12,6 @@
 require 'mkmf'
 require 'rbconfig'
 
-
 if RUBY_PLATFORM =~ /darwin/
   search_dirs = ["/sw", "/usr/local", "/opt/local"]
   config_dirs = search_dirs.dup.delete_if { |path| !File.directory?(path) }

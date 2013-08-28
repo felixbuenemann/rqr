@@ -1,36 +1,9 @@
 #include "qr_draw_png.h"
 
-//=================================================================================
-// QRDrawPNG::QRDrawPNG
-//=================================================================================
-QRDrawPNG::QRDrawPNG()
-{
-#ifdef USE_PNG
-	bit_image = NULL;
-#endif
-}
-
-//=================================================================================
-// QRDrawPNG::~QRDrawPNG
-//=================================================================================
-QRDrawPNG::~QRDrawPNG()
-{
-#ifdef USE_PNG
-	int i;
-	
-	if(bit_image){
-		for(i=0; i<this->rsize; i++){
-			free(bit_image[i]);
-		}
-		free(bit_image);
-	}
-#endif
-}
-
 //=============================================================================
 // QRDrawPNG::draw
 //=============================================================================
-int QRDrawPNG::draw(char *filename, int modulesize, int symbolsize,
+int QRDrawPNG::draw(const char *filename, int modulesize, int symbolsize,
               unsigned char data[MAX_MODULESIZE][MAX_MODULESIZE], void *opt)
 {
 #ifdef USE_PNG
@@ -54,7 +27,7 @@ int QRDrawPNG::draw(char *filename, int modulesize, int symbolsize,
 int QRDrawPNG::raster(unsigned char data[MAX_MODULESIZE][MAX_MODULESIZE])
 {
 #ifdef USE_PNG
-	int bitw = (int)ceil(this->rsize/8) + 1;
+	int bitw = (int)ceil((float)(this->rsize/8)) + 1;
 	
 	/* 実際にデータを置く領域を確保 */
 	bit_image = (unsigned char **)malloc(sizeof(unsigned char *) * this->rsize);

@@ -10,4 +10,5 @@ module RQR
   require "rqr/QR"
   require "rqr/errors"
   require "rqr/qrcode"  
+  require "rqr/version"  
 end

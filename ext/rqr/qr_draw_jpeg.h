@@ -20,9 +20,9 @@ class QRDrawJPEG : public QRDraw
 		int write();
 	
 	public:
-		QRDrawJPEG();
-		~QRDrawJPEG();
-		int draw(char *filename, int modulesize, int symbolsize,
+		QRDrawJPEG(){}
+		~QRDrawJPEG(){}
+		int draw(const char *filename, int modulesize, int symbolsize,
                       unsigned char data[MAX_MODULESIZE][MAX_MODULESIZE], void *opt);
 };
 

@@ -1,27 +1,22 @@
-#ifndef _QR_DRAW_TIFF_
-#define _QR_DRAW_TIFF_
+#ifndef _QR_DRAW_SVG_
+#define _QR_DRAW_SVG_
 
 #include <stdlib.h>
-#include <string.h>
-#include <math.h>
+//#include <string.h>
+#include <stdio.h>
 #include "qr_draw.h"
 
-#ifdef USE_TIFF
-	#include <tiffio.h>
-#endif
-
 //=============================================================================
-// QRDrawTIFF クラス
+// QRDrawSVG
 //=============================================================================
-class QRDrawTIFF : public QRDraw
+class QRDrawSVG : public QRDraw
 {
 	private:
-		int raster(unsigned char data[MAX_MODULESIZE][MAX_MODULESIZE]);
-		int write();
+		int write(unsigned char data[MAX_MODULESIZE][MAX_MODULESIZE]);
 		
 	public:
-		QRDrawTIFF(){}
-		~QRDrawTIFF(){}
+		QRDrawSVG(){}
+		~QRDrawSVG(){}
 		int draw(const char *filename, int modulesize, int symbolsize,
                       unsigned char data[MAX_MODULESIZE][MAX_MODULESIZE], void *opt);
 };

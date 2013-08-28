@@ -13,11 +13,19 @@ module RQR
   		@options = { :level => 1, :version => 0, :auto_extend => true, 
   		             :masking => -1, :eps_preview => false, :module_size => 4 }
       @options.merge!(options)
+      @imager = nil
   	end
+  	
+  	def self.create(options = {})
+  	  raise BlockNotFoundException.new("Block not found!") unless block_given?
+  	  qrcode = RQR::QRCode.new(options)
+  	  yield qrcode
+  	  qrcode.close
+	  end
   	
     # data::  data for qrcode
     # path::  path for qrcode image file
-    # format:: image format. :jpg|:png|:tiff|:eps
+    # format:: image format. :jpg|:png|:tiff|:eps|:svg
   	def save(data, path, format=nil)
   		format ||= get_format(path)
 
@@ -32,6 +40,8 @@ module RQR
   				res = save_as_tiff(path)
   			when :eps
   				res = save_as_eps(path)
+  			when :svg
+  				res = save_as_svg(path)
   			else
   			  close; raise RQR::FormatNotFoundException.new("invalid format! #{format}")
   		end
@@ -45,7 +55,7 @@ module RQR
 	
   	def close()
   	  @encoder = nil if @encoder
-  	  @imager = nil if @imager
+  	  (@imager.close; @imager = nil) if @imager
   	end
 	
   private
@@ -82,6 +92,12 @@ module RQR
       opt.free if opt
       ret
   	end
+
+  	def save_as_svg(path)
+      @imager=QR::QRDrawSVG.new
+      @imager.draw(path, @options[:module_size], @encoder.m_nSymbleSize, @encoder.m_byModuleData, nil)
+  	end
+
   end
 end
 
