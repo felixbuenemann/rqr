@@ -183,6 +183,7 @@ int QRDrawPS::write(unsigned char data[MAX_MODULESIZE][MAX_MODULESIZE], const ch
 	fprintf(stream, "%%%%BoundingBox: 0 0 %d %d\n", this->rsize, this->rsize);
 	fprintf(stream, "%%%%HiResBoundingBox: 0 0 %d %d\n", this->rsize, this->rsize);
 	fprintf(stream, "%%%%DocumentProcessColors: Cyan Magenta Yellow Black\n");
+	fprintf(stream, "%%%%DocumentData: Clean7Bit\n");
 	fprintf(stream, "%%%%EndComments\n");
 	fprintf(stream, "%%%%BeginProlog\n");
 	fprintf(stream, "%%%%EndProlog\n");
