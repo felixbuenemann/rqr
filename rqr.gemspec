@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = %q{rqr}
-  s.version = "0.2.6"
+  s.version = "0.2.7"
   s.authors = ["Ryota Maruko", "zzzhc"]
   s.date = Time.now.utc.strftime("%Y-%m-%d")
   s.email = %q{pools _at_ rubyforge _dot_ org}
