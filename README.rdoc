@@ -59,25 +59,26 @@ and at http://www.denso-wave.com/qrcode/index-e.html.
 * libtiff
 
 == Note:
-If using OSX, Use Fink(http://www.finkproject.org) Universal Binary libs.
-* sudo fink install libjpeg
-* sudo fink install libpng
-* sudo fink install libtiff
+If using OSX, use {Homebrew}[http://brew.sh] to install libs:
+  brew install libjpeg
+  brew install libpng
+  brew install libtiff
 
-or use MacPorts (http://www.macports.com)
-* sudo port install jpeg
-* sudo port install libpng
-* sudo port install tiff
+or use {Fink}[http://www.finkproject.org]
+  sudo fink install libjpeg
+  sudo fink install libpng
+  sudo fink install libtiff
+
+or use {MacPorts}[http://www.macports.com]
+  sudo port install jpeg
+  sudo port install libpng
+  sudo port install tiff
 
 
 == INSTALL:
 
-
-* "cd" to this folder
-* "rake package" (install the required gems if requested)
-* "cd pkg"
-* "sudo gem install rqr"
-
+Include the gem in your Gemfile:
+  gem "rqr", :git => "git://github.com/felixbuenemann/rqr.git"
 
 == LICENSE:
 
