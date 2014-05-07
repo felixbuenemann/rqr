@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include "qr_draw.h"
 
 #ifdef USE_PNG
