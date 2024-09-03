@@ -13,7 +13,7 @@ require 'mkmf'
 require 'rbconfig'
 
 if RUBY_PLATFORM =~ /darwin/
-  search_dirs = ["/sw", "/usr/local", "/opt/local"]
+  search_dirs = ["/sw", "/usr/local", "/opt/local", "/opt/homebrew"]
   config_dirs = search_dirs.dup.delete_if { |path| !File.directory?(path) }
   raise "Could not find any of #{search_dirs.join(", ")}. Do you have native library dependencies installed?" if config_dirs.empty?
 
